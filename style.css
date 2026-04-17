@@ -1,72 +1,119 @@
-const chatbox = document.getElementById("chatbox");
-const audioPlayer = document.getElementById("audioPlayer");
-const albumArt = document.getElementById("albumArt");
-const songTitle = document.getElementById("songTitle");
-const equalizer = document.querySelector(".equalizer");
-const musicNotes = document.querySelector(".music-notes");
-
-let currentMood = "neutral";
-
-const data = {
-  happy: { song: "happy.mp3", image: "happy.jpg", title: "Happy Beats 🎉" },
-  sad: { song: "sad.mp3", image: "sad.jpg", title: "Sad Melody 💙" },
-  angry: { song: "angry.mp3", image: "angry.jpg", title: "Energy Boost 🔥" },
-  neutral: { song: "neutral.mp3", image: "neutral.jpg", title: "Chill Vibes 🎧" }
-};
-
-/* Preload */
-const audioCache = {};
-for (let mood in data) {
-  audioCache[mood] = new Audio(data[mood].song);
+* {
+  box-sizing: border-box;
 }
 
-/* Detect mood */
-function detectMood(text) {
-  text = text.toLowerCase();
-  if (text.includes("happy")) return "happy";
-  if (text.includes("sad")) return "sad";
-  if (text.includes("angry")) return "angry";
-  return "neutral";
+/* BODY */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #2a4b8d, #3b6cb7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
 }
 
-/* Send */
-function sendMessage() {
-  const input = document.getElementById("userInput");
-  const text = input.value;
-  if (!text) return;
+/* CONTAINER */
+.container {
+  width: 520px;
+  max-width: 95%;
+  padding: 20px;
 
-  chatbox.innerHTML += `<div class="user">${text}</div>`;
+  border-radius: 20px;
+  background: #1c1c2e;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.6);
 
-  const mood = detectMood(text);
-  currentMood = mood;
-
-  /* Update UI */
-  document.body.className = mood;
-  albumArt.src = data[mood].image;
-  songTitle.innerText = "Now Playing: " + data[mood].title;
-
-  /* Play */
-  audioPlayer.src = audioCache[mood].src;
-  audioPlayer.currentTime = 0;
-  audioPlayer.play();
-
-  input.value = "";
+  color: white;
+  text-align: center;
 }
 
-/* Animations */
-audioPlayer.onplay = () => {
-  equalizer.classList.add("active");
-};
+/* TITLE */
+h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
 
-audioPlayer.onpause = () => {
-  equalizer.classList.remove("active");
-};
+/* IMAGE */
+#albumArt {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 15px;
+}
 
-audioPlayer.onended = () => {
-  equalizer.classList.remove("active");
-};
+/* SONG TITLE */
+#songTitle {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #ddd;
+}
 
-/* Favorite */
-function addFavorite() {
-  alert("Added ❤️");
+/* EQUALIZER */
+.equalizer {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.equalizer span {
+  width: 5px;
+  height: 10px;
+  background: #1db954;
+}
+
+.equalizer.active span {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { height: 10px; }
+  50% { height: 30px; }
+}
+
+/* CHAT */
+#chatbox {
+  height: 120px;
+  background: #2a2a3d;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* INPUT */
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+}
+
+/* BUTTON */
+button {
+  background: #1db954;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+/* AUDIO */
+audio {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* FAVORITE */
+#favBtn {
+  width: 100%;
+  border-radius: 10px;
+  background: #e74c3c;
 }
