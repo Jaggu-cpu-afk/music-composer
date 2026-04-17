@@ -5,6 +5,7 @@ const equalizer = document.querySelector(".equalizer");
 
 let currentMood = "neutral";
 
+/* DATA */
 const data = {
   happy: { song: "happy.mp3", image: "happy.jpg", title: "Happy Vibes 🎉" },
   sad: { song: "sad.mp3", image: "sad.jpg", title: "Sad Mood 💙" },
@@ -18,7 +19,7 @@ for (let mood in data) {
   audioCache[mood] = new Audio(data[mood].song);
 }
 
-/* DETECT MOOD */
+/* DETECT */
 function detectMood(text) {
   text = text.toLowerCase();
   if (text.includes("happy")) return "happy";
@@ -60,6 +61,7 @@ audioPlayer.onended = () => {
   equalizer.classList.remove("active");
 };
 
+/* FAVORITE */
 function addFavorite() {
   alert("Added ❤️");
 }
