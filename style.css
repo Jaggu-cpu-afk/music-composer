@@ -14,14 +14,14 @@ body {
   align-items: center;
 
   height: 100vh;
-  overflow: hidden;   /* 🔥 no page scroll */
+  overflow: hidden;
 }
 
 /* ===== CONTAINER ===== */
 .container {
-  width: 550px;
+  width: 600px;
   max-width: 95%;
-  height: 90vh;                 /* 🔥 fits screen */
+  height: 90vh;
 
   padding: 20px;
   border-radius: 20px;
@@ -32,6 +32,9 @@ body {
 
   display: flex;
   flex-direction: column;
+
+  transform: scale(0.85);   /* 🔥 THIS IS THE KEY */
+  transform-origin: center;
 }
 
 /* ===== TITLE ===== */
