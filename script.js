@@ -6,7 +6,7 @@ const musicNotes = document.querySelector(".music-notes");
 
 let currentMood = "neutral";
 
-/* File paths (NO folders) */
+/* File paths */
 const data = {
   happy: { song: "happy.mp3", image: "happy.jpg" },
   sad: { song: "sad.mp3", image: "sad.jpg" },
@@ -14,7 +14,7 @@ const data = {
   neutral: { song: "neutral.mp3", image: "neutral.jpg" }
 };
 
-/* Mood detection */
+/* Detect mood */
 function detectMood(text) {
   text = text.toLowerCase();
 
@@ -69,20 +69,25 @@ function sendMessage() {
     alert("Click play button if audio doesn't start");
   });
 
-  /* Start animations */
-  equalizer.classList.add("active");
-  musicNotes.classList.add("active");
-
   input.value = "";
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-/* Stop animations */
+/* 🎯 AUDIO EVENTS (FINAL FIX 🔥) */
+
+/* When play or resume */
+audioPlayer.onplay = () => {
+  equalizer.classList.add("active");
+  musicNotes.classList.add("active");
+};
+
+/* When pause */
 audioPlayer.onpause = () => {
   equalizer.classList.remove("active");
   musicNotes.classList.remove("active");
 };
 
+/* When ended */
 audioPlayer.onended = () => {
   equalizer.classList.remove("active");
   musicNotes.classList.remove("active");
