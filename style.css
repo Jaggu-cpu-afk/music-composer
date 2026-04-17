@@ -1,174 +1,72 @@
-/* ===== GLOBAL ===== */
-* {
-  box-sizing: border-box;
+const chatbox = document.getElementById("chatbox");
+const audioPlayer = document.getElementById("audioPlayer");
+const albumArt = document.getElementById("albumArt");
+const songTitle = document.getElementById("songTitle");
+const equalizer = document.querySelector(".equalizer");
+const musicNotes = document.querySelector(".music-notes");
+
+let currentMood = "neutral";
+
+const data = {
+  happy: { song: "happy.mp3", image: "happy.jpg", title: "Happy Beats 🎉" },
+  sad: { song: "sad.mp3", image: "sad.jpg", title: "Sad Melody 💙" },
+  angry: { song: "angry.mp3", image: "angry.jpg", title: "Energy Boost 🔥" },
+  neutral: { song: "neutral.mp3", image: "neutral.jpg", title: "Chill Vibes 🎧" }
+};
+
+/* Preload */
+const audioCache = {};
+for (let mood in data) {
+  audioCache[mood] = new Audio(data[mood].song);
 }
 
-/* ===== BODY ===== */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 100vh;
-  overflow: hidden;
+/* Detect mood */
+function detectMood(text) {
+  text = text.toLowerCase();
+  if (text.includes("happy")) return "happy";
+  if (text.includes("sad")) return "sad";
+  if (text.includes("angry")) return "angry";
+  return "neutral";
 }
 
-/* ===== CONTAINER ===== */
-.container {
-  width: 600px;
-  max-width: 95%;
-  height: 90vh;
+/* Send */
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const text = input.value;
+  if (!text) return;
 
-  padding: 20px;
-  border-radius: 20px;
-  background: #1c1c2e;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.7);
-  color: white;
-  text-align: center;
+  chatbox.innerHTML += `<div class="user">${text}</div>`;
 
-  display: flex;
-  flex-direction: column;
+  const mood = detectMood(text);
+  currentMood = mood;
 
-  transform: scale(0.85);   /* 🔥 THIS IS THE KEY */
-  transform-origin: center;
+  /* Update UI */
+  document.body.className = mood;
+  albumArt.src = data[mood].image;
+  songTitle.innerText = "Now Playing: " + data[mood].title;
+
+  /* Play */
+  audioPlayer.src = audioCache[mood].src;
+  audioPlayer.currentTime = 0;
+  audioPlayer.play();
+
+  input.value = "";
 }
 
-/* ===== TITLE ===== */
-h1 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
+/* Animations */
+audioPlayer.onplay = () => {
+  equalizer.classList.add("active");
+};
 
-/* ===== IMAGE ===== */
-#albumArt {
-  width: 100%;
-  height: 180px;
+audioPlayer.onpause = () => {
+  equalizer.classList.remove("active");
+};
 
-  object-fit: cover;   /* 🔥 FULL FILL (NO BLACK SIDES) */
+audioPlayer.onended = () => {
+  equalizer.classList.remove("active");
+};
 
-  border-radius: 15px;
-}
-
-/* ===== EQUALIZER ===== */
-.equalizer {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin: 10px 0;
-}
-
-.equalizer span {
-  width: 6px;
-  height: 12px;
-  background: #1db954;
-}
-
-.equalizer.active span {
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%,100% { height: 12px; }
-  50% { height: 30px; }
-}
-
-/* ===== MUSIC NOTES ===== */
-.music-notes {
-  position: absolute;
-  top: 240px;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  pointer-events: none;
-}
-
-.music-notes span {
-  position: absolute;
-  bottom: 0;
-  font-size: 20px;
-  opacity: 0;
-}
-
-.music-notes.active span {
-  animation: floatNote 2s linear infinite;
-}
-
-.music-notes span:nth-child(1) { left: 20%; }
-.music-notes span:nth-child(2) { left: 40%; }
-.music-notes span:nth-child(3) { left: 60%; }
-.music-notes span:nth-child(4) { left: 80%; }
-
-@keyframes floatNote {
-  0% { transform: translateY(0); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translateY(-50px); opacity: 0; }
-}
-
-/* ===== CHATBOX ===== */
-#chatbox {
-  flex: 1;                     /* 🔥 takes remaining space */
-  overflow-y: auto;
-  background: #2a2a3d;
-  border-radius: 12px;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-/* ===== MESSAGES ===== */
-.user, .bot {
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 10px;
-  max-width: 70%;
-}
-
-.user {
-  background: #1db954;
-  margin-left: auto;
-}
-
-.bot {
-  background: #444;
-}
-
-/* ===== INPUT ===== */
-.input-area {
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-}
-
-/* ===== BUTTON ===== */
-button {
-  background: #1db954;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-}
-
-/* ===== AUDIO ===== */
-audio {
-  width: 100%;
-  margin-top: 10px;
-}
-
-/* ===== FAVORITE BUTTON ===== */
-#favBtn {
-  margin-top: 10px;
-  width: 100%;
-  border-radius: 10px;
-  background: #e74c3c;
-  padding: 10px;
+/* Favorite */
+function addFavorite() {
+  alert("Added ❤️");
 }
