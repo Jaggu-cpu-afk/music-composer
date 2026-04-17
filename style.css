@@ -46,9 +46,10 @@ h1 {
 /* ===== IMAGE ===== */
 #albumArt {
   width: 100%;
-  height: 180px;   /* reduced */
-  object-fit: contain;
-  background: black;
+  height: 180px;
+
+  object-fit: cover;   /* 🔥 FULL FILL (NO BLACK SIDES) */
+
   border-radius: 15px;
 }
 
