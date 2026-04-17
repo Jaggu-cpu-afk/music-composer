@@ -2,10 +2,11 @@ const chatbox = document.getElementById("chatbox");
 const audioPlayer = document.getElementById("audioPlayer");
 const albumArt = document.getElementById("albumArt");
 const equalizer = document.querySelector(".equalizer");
+const musicNotes = document.querySelector(".music-notes");
 
 let currentMood = "neutral";
 
-/* ✅ Correct paths (NO folders) */
+/* File paths (NO folders) */
 const data = {
   happy: { song: "happy.mp3", image: "happy.jpg" },
   sad: { song: "sad.mp3", image: "sad.jpg" },
@@ -13,6 +14,7 @@ const data = {
   neutral: { song: "neutral.mp3", image: "neutral.jpg" }
 };
 
+/* Mood detection */
 function detectMood(text) {
   text = text.toLowerCase();
 
@@ -22,6 +24,7 @@ function detectMood(text) {
   return "neutral";
 }
 
+/* Bot reply */
 function botReply(mood) {
   if (mood === "happy") return "Awesome! Keep smiling 😄";
   if (mood === "sad") return "I’m here for you 💙";
@@ -43,6 +46,7 @@ function typeEffect(text) {
   }, 30);
 }
 
+/* Main function */
 function sendMessage() {
   const input = document.getElementById("userInput");
   const userText = input.value;
@@ -55,25 +59,34 @@ function sendMessage() {
   currentMood = mood;
 
   const reply = botReply(mood);
-  setTimeout(() => typeEffect(reply), 500);
+  setTimeout(() => typeEffect(reply), 400);
 
-  /* Update player */
+  /* Update media */
   audioPlayer.src = data[mood].song;
   albumArt.src = data[mood].image;
 
   audioPlayer.play().catch(() => {
-    alert("Click play button to start audio (browser restriction)");
+    alert("Click play button if audio doesn't start");
   });
 
+  /* Start animations */
   equalizer.classList.add("active");
+  musicNotes.classList.add("active");
 
   input.value = "";
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-/* Stop equalizer */
-audioPlayer.onpause = () => equalizer.classList.remove("active");
-audioPlayer.onended = () => equalizer.classList.remove("active");
+/* Stop animations */
+audioPlayer.onpause = () => {
+  equalizer.classList.remove("active");
+  musicNotes.classList.remove("active");
+};
+
+audioPlayer.onended = () => {
+  equalizer.classList.remove("active");
+  musicNotes.classList.remove("active");
+};
 
 /* Favorites */
 function addFavorite() {
