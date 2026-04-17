@@ -2,6 +2,7 @@ const audioPlayer = document.getElementById("audioPlayer");
 const albumArt = document.getElementById("albumArt");
 const songTitle = document.getElementById("songTitle");
 const equalizer = document.querySelector(".equalizer");
+const musicNotes = document.querySelector(".music-notes");
 
 let currentMood = "neutral";
 
@@ -48,17 +49,20 @@ function sendMessage() {
   input.value = "";
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 audioPlayer.onplay = () => {
   equalizer.classList.add("active");
+  musicNotes.classList.add("active");
 };
 
 audioPlayer.onpause = () => {
   equalizer.classList.remove("active");
+  musicNotes.classList.remove("active");
 };
 
 audioPlayer.onended = () => {
   equalizer.classList.remove("active");
+  musicNotes.classList.remove("active");
 };
 
 /* FAVORITE */
