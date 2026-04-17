@@ -1,45 +1,40 @@
+/* ===== BODY ===== */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
+  background: linear-gradient(135deg, #1e1e2f, #121212);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: linear-gradient(-45deg, #1db954, #3498db, #9b59b6, #e74c3c);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  height: 100vh;
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% }
-  50% { background-position: 100% }
-  100% { background-position: 0% }
-}
-
+/* ===== CONTAINER ===== */
 .container {
-  width: 420px;
+  width: 380px;
   padding: 20px;
   border-radius: 20px;
-  backdrop-filter: blur(15px);
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.7);
   box-shadow: 0 0 30px rgba(0,0,0,0.6);
   color: white;
   text-align: center;
 }
 
+/* ===== TITLE ===== */
 h1 {
   margin-bottom: 10px;
 }
 
+/* ===== IMAGE FIX (IMPORTANT 🔥) ===== */
 #albumArt {
   width: 100%;
-  height: 200px;
-  border-radius: 15px;
-  object-fit: cover;
+  height: 180px;       /* FIXED HEIGHT */
+  object-fit: cover;   /* CROPS IMAGE PROPERLY */
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
-/* Equalizer */
+/* ===== EQUALIZER ===== */
 .equalizer {
   display: flex;
   justify-content: center;
@@ -62,16 +57,17 @@ h1 {
   50% { height: 30px; }
 }
 
-/* Chat */
+/* ===== CHATBOX ===== */
 #chatbox {
-  height: 180px;
+  height: 150px;
   overflow-y: auto;
-  background: rgba(255,255,255,0.1);
+  background: #222;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
+/* ===== MESSAGES ===== */
 .user, .bot {
   padding: 8px;
   margin: 5px 0;
@@ -88,7 +84,7 @@ h1 {
   background: #444;
 }
 
-/* Input */
+/* ===== INPUT ===== */
 .input-area {
   display: flex;
   gap: 10px;
@@ -99,9 +95,9 @@ input {
   padding: 10px;
   border-radius: 20px;
   border: none;
-  outline: none;
 }
 
+/* ===== BUTTON ===== */
 button {
   background: #1db954;
   border: none;
@@ -111,6 +107,13 @@ button {
   cursor: pointer;
 }
 
+/* ===== AUDIO ===== */
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ===== FAVORITE BUTTON ===== */
 #favBtn {
   margin-top: 10px;
   width: 100%;
