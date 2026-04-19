@@ -6,7 +6,7 @@ const chatbox = document.getElementById("chatbox");
 
 let currentMood = "neutral";
 
-/* DATA */
+/* DATA (MATCHES YOUR FILES) */
 const data = {
   happy: { song: "happy.mp3", image: "happy.jpg", title: "Happy Vibes 🎉" },
   sad: { song: "sad.mp3", image: "sad.jpg", title: "Sad Mood 💙" },
@@ -38,12 +38,14 @@ function sendMessage() {
   songTitle.innerText = "Now Playing: " + data[mood].title;
 
   audioPlayer.src = data[mood].song;
+  audioPlayer.currentTime = 0;
   audioPlayer.play();
 
-  // chat message
+  // show message
   const msg = document.createElement("div");
   msg.innerText = "You: " + text;
   chatbox.appendChild(msg);
+  chatbox.scrollTop = chatbox.scrollHeight;
 
   input.value = "";
 }
