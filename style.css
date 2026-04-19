@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #2a4b8d, #3b6cb7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #1b1b2f;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  text-align: center;
+  color: white;
+}
+
+#albumArt {
+  width: 100%;
+  height: 160px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+#songTitle {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* smooth equalizer */
+.equalizer {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.equalizer span {
+  width: 4px;
+  height: 10px;
+  background: #00ff88;
+  border-radius: 5px;
+}
+
+.equalizer.active span {
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,100% { height: 10px; }
+  50% { height: 18px; }
+}
+
+/* music notes */
+.music-notes {
+  height: 25px;
+  position: relative;
+}
+
+.music-notes span {
+  position: absolute;
+  bottom: 0;
+  font-size: 14px;
+  opacity: 0;
+}
+
+.music-notes span:nth-child(1) { left: 20%; }
+.music-notes span:nth-child(2) { left: 40%; }
+.music-notes span:nth-child(3) { left: 60%; }
+.music-notes span:nth-child(4) { left: 80%; }
+
+.music-notes.active span {
+  animation: float 3s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-25px); opacity: 0; }
+}
+
+/* chat */
+#chatbox {
+  height: 100px;
+  background: #2a2a40;
+  border-radius: 12px;
+  margin: 10px 0;
+  padding: 8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.message {
+  padding: 6px 10px;
+  border-radius: 10px;
+  max-width: 75%;
+  font-size: 12px;
+}
+
+.user {
+  align-self: flex-end;
+  background: #00ff88;
+  color: black;
+}
+
+.bot {
+  align-self: flex-start;
+  background: #3a3a55;
+}
+
+/* input */
+.input-area {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 20px;
+  border: none;
+}
+
+button {
+  background: #00ff88;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+audio {
+  width: 100%;
+  margin: 8px 0;
+}
+
+#favBtn {
+  width: 100%;
+  border-radius: 8px;
+  background: #ff4b4b;
+  color: white;
+  padding: 8px;
+}
