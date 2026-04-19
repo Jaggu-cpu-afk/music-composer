@@ -2,7 +2,7 @@ const audioPlayer = document.getElementById("audioPlayer");
 const albumArt = document.getElementById("albumArt");
 const songTitle = document.getElementById("songTitle");
 const equalizer = document.querySelector(".equalizer");
-const musicNotes = document.querySelector(".music-notes");
+const chatbox = document.getElementById("chatbox");
 
 let currentMood = "neutral";
 
@@ -14,13 +14,7 @@ const data = {
   neutral: { song: "neutral.mp3", image: "neutral.jpg", title: "Neutral Vibes 🎧" }
 };
 
-/* PRELOAD */
-const audioCache = {};
-for (let mood in data) {
-  audioCache[mood] = new Audio(data[mood].song);
-}
-
-/* DETECT */
+/* DETECT MOOD */
 function detectMood(text) {
   text = text.toLowerCase();
   if (text.includes("happy")) return "happy";
@@ -29,7 +23,7 @@ function detectMood(text) {
   return "neutral";
 }
 
-/* SEND */
+/* SEND MESSAGE */
 function sendMessage() {
   const input = document.getElementById("userInput");
   const text = input.value;
@@ -39,33 +33,35 @@ function sendMessage() {
   const mood = detectMood(text);
   currentMood = mood;
 
+  // update UI
   albumArt.src = data[mood].image;
   songTitle.innerText = "Now Playing: " + data[mood].title;
 
-  audioPlayer.src = audioCache[mood].src;
-  audioPlayer.currentTime = 0;
+  audioPlayer.src = data[mood].song;
   audioPlayer.play();
+
+  // chat message
+  const msg = document.createElement("div");
+  msg.innerText = "You: " + text;
+  chatbox.appendChild(msg);
 
   input.value = "";
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 audioPlayer.onplay = () => {
   equalizer.classList.add("active");
-  musicNotes.classList.add("active");
 };
 
 audioPlayer.onpause = () => {
   equalizer.classList.remove("active");
-  musicNotes.classList.remove("active");
 };
 
 audioPlayer.onended = () => {
   equalizer.classList.remove("active");
-  musicNotes.classList.remove("active");
 };
 
 /* FAVORITE */
 function addFavorite() {
-  alert("Added ❤️");
+  alert("Added to Favorites ❤️");
 }
