@@ -1,97 +1,61 @@
 # 🎧 Mood-Based Music Player
 
-A smart and interactive web application that detects user mood through text input and plays music accordingly — with a clean, professional UI and smooth animations.
+A smart web application that detects user mood from text input and plays music accordingly with a clean UI and smooth animations.
 
 ---
 
-## 🌐 Live Demo
+## 🚀 Live Demo
 
-👉 https://jaggu-cpu-afk.github.io/music-/
+<p align="center">
+  <a href="https://jaggu-cpu-afk.github.io/music-composer/">
+    <img src="https://img.shields.io/badge/▶ Click%20Me%20to%20Open%20Website-00ff88?style=for-the-badge&logo=google-chrome&logoColor=black">
+  </a>
+</p>
 
 ---
 
 ## ✨ Features
 
-* 💬 Chat-based mood interaction (user + system response)
-* 🤖 Automatic mood detection (happy, sad, angry, neutral)
-* 🎵 Dynamic music playback based on mood
-* 🖼️ Auto-changing album artwork
-* 🎚️ Smooth animated equalizer (only when music plays)
-* 🎵 Floating music note animations
-* 💬 Professional chat UI (message bubbles)
-* 📱 Fully responsive (works on mobile + desktop)
-* ⚡ Fast loading with optimized media handling
-* ❤️ Add to Favorites (UI feature)
-
----
-
-## 🚀 Improvements & Fixes
-
-* ✅ Fixed GitHub Pages media loading issues
-* ✅ Corrected file path handling (`images/` folder)
-* ✅ Added proper audio reload for browser compatibility
-* ✅ Reduced animation intensity for smoother experience
-* ✅ Improved UI spacing, colors, and readability
-* ✅ Added mobile responsiveness
+* 💬 Chat-based mood interaction
+* 🤖 Mood detection (happy, sad, angry, neutral)
+* 🎵 Music playback based on mood
+* 🖼️ Dynamic album art
+* 🎚️ Animated equalizer
+* 🎵 Floating music symbols
+* 📱 Mobile responsive design
+* ❤️ Add to Favorites
 
 ---
 
 ## 🛠️ Technologies Used
 
-* HTML5
-* CSS3 (Flexbox + Animations)
-* JavaScript (DOM Manipulation + Audio API)
+* HTML
+* CSS
+* JavaScript
 
 ---
 
 ## 📁 Project Structure
 
 ```
-music-/
+music-composer/
  ├── index.html
  ├── style.css
  ├── script.js
- └── images/
-      ├── happy.jpg
-      ├── happy.mp3
-      ├── sad.jpg
-      ├── sad.mp3
-      ├── angry.jpg
-      ├── angry.mp3
-      ├── neutral.jpg
-      ├── neutral.mp3
+ ├── happy.jpg / happy.mp3
+ ├── sad.jpg / sad.mp3
+ ├── angry.jpg / angry.mp3
+ ├── neutral.jpg / neutral.mp3
 ```
 
 ---
 
 ## ⚙️ How It Works
 
-1. User types a message (e.g., "I am sad")
-2. System detects mood using keyword matching
-3. Corresponding:
-
-   * 🎵 Song plays
-   * 🖼️ Image updates
-   * 💬 Chat response appears
-4. Animations activate during playback
-
----
-
-## 📱 Compatibility
-
-* ✅ Desktop browsers
-* ✅ Mobile browsers (Android / iOS)
-* ✅ GitHub Pages deployment
-
----
-
-## 🔮 Future Enhancements
-
-* 🎤 Voice input (speech-to-text mood detection)
-* 🤖 AI-based mood analysis (advanced NLP)
-* 🎶 Playlist system
-* 💾 Save favorites permanently (localStorage)
-* 🌙 Dark / Light mode toggle
+1. Enter your mood in the input box
+2. App detects mood using keywords
+3. Music + image changes automatically
+4. Chat shows mood response
 
 ---
 
@@ -103,4 +67,4 @@ Developed by **Jaggu-cpu-afk**
 
 ## ⭐ Support
 
-If you like this project, consider giving it a ⭐ on GitHub!
+If you like this project, give it a ⭐ on GitHub!
